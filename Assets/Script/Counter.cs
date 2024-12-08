@@ -5,8 +5,12 @@ using UnityEngine;
 public class Counter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _counterText;
+
+    private const string ÑountCoroutine = "Count";
+
     private int _counter = 0;
     private bool _isCounting = false;
+    private float WaitNumber = 0.5f;
 
     private void Update()
     {
@@ -14,11 +18,11 @@ public class Counter : MonoBehaviour
         {
             if (_isCounting)
             {
-                StopCoroutine("Count");
+                StopCoroutine(ÑountCoroutine);
             }
             else
             {
-                StartCoroutine("Count");
+                StartCoroutine(ÑountCoroutine);
             }
             _isCounting = !_isCounting;
         }
@@ -28,7 +32,7 @@ public class Counter : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(WaitNumber);
             _counter++;
 
             if (_counterText != null)
