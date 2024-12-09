@@ -6,33 +6,24 @@ public class Counter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _counterText;
 
-    private const string ÑountCoroutine = "Count";
-
     private int _counter = 0;
-    private bool _isCounting = false;
-    private float WaitNumber = 0.5f;
+    private float _waitNumber = 0.5f;
 
-    private void Update()
+    public void StartCounting()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (_isCounting)
-            {
-                StopCoroutine(ÑountCoroutine);
-            }
-            else
-            {
-                StartCoroutine(ÑountCoroutine);
-            }
-            _isCounting = !_isCounting;
-        }
+        StartCoroutine(Count());
+    }
+
+    public void StopCounting()
+    {
+        StopCoroutine(Count());
     }
 
     private IEnumerator Count()
     {
         while (true)
         {
-            yield return new WaitForSeconds(WaitNumber);
+            yield return new WaitForSeconds(_waitNumber);
             _counter++;
 
             if (_counterText != null)
